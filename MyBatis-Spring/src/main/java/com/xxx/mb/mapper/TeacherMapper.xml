@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.mb.mapper.TeacherMapper">
+
+
+    <!--
+        属性名与表中字段名不一致时，需要用resultMap手动映射
+        1、单表查询：只需要手动映射不一样的字段
+        2、多表查询：需要手动映射全部字段
+    -->
+    <select id="findTeacherById" parameterType="Integer" resultMap="BaseResult">
+       select * from teacher where tid = #{tid}
+    </select>
+
+    <resultMap id="BaseResult" type="com.xxx.mb.model.Teacher">
+        <!--<id column="tid" property="tid"/>-->
+        <result column="t_name" property="tName"/>
+        <result column="t_age" property="tAge"/>
+        <result column="t_address" property="tAddress"/>
+    </resultMap>
+
+
+    <!--   parameterType之包装类     -->
+    <insert id="insertTeacher" parameterType="com.xxx.mb.model.TeacherVo">
+        insert into teacher values (null,#{teacher.tName},#{teacher.tAge},#{teacher.tAddress})
+    </insert>
+
+
+    <!--
+        动态SQL：
+            if标签：判断传参是否为空
+            where标签：去除第一个多余的前and
+            Sql片段：提取公共部分
+            foreach：遍历多个查询条件
+    -->
+
+    <select id="findTeacherByNameAndAge" parameterType="com.xxx.mb.model.Teacher" resultMap="BaseResult">
+        select * from teacher
+        <where>
+            <if test="tName!=null and tName!=''">
+                t_name = #{tName}
+            </if>
+            <if test="tAge!=null and tAge!=''">
+                and t_age = #{tAge}
+            </if>
+        </where>
+    </select>
+
+
+    <!--foreach    多个id
+       collection值：parameterType如果是包装类，直接填属性名ids
+                    parameterType如果是数组，必须填array
+                    parameterType如果是集合，必须填list
+-->
+    <select id="findTeacherByIds" parameterType="com.xxx.mb.model.TeacherVo" resultMap="BaseResult">
+        select * from teacher
+        <where>
+            tid in
+            <foreach collection="ids" item="value" open="(" separator="," close=")">
+                #{value}
+            </foreach>
+        </where>
+    </select>
+</mapper>
