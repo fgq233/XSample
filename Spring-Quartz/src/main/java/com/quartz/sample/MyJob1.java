@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 工作类
+ * 任务类
  */
 public class MyJob1 {
 
