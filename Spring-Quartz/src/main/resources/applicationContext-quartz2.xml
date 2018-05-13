@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--   方式二：定义的Job类继承QuartzJobBean，或者实现Job接口     -->
+
+    <!--   PS：两种方式不要一起用     -->
+
+<!--
+    1、工作详情
+    <bean name="jobDetailFactoryBean" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.quartz.sample.MyJob2"/>
+        <property name="durability" value="true"/>
+    </bean>
+
+    2、配置触发器
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetailFactoryBean"/>
+        <property name="cronExpression">
+            <value>0/10 * * * * ?  2017-2099</value>
+        </property>
+    </bean>
+
+     3、配置调度工厂
+    <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="cronTrigger"/>
+            </list>
+        </property>
+    </bean>-->
+
+
+</beans>
