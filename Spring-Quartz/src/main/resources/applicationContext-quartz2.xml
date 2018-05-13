@@ -9,7 +9,7 @@
     <!--   PS：两种方式不要一起用     -->
 
 <!--
-    1、工作详情
+    1、任务详情
     <bean name="jobDetailFactoryBean" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         <property name="jobClass" value="com.quartz.sample.MyJob2"/>
         <property name="durability" value="true"/>
