@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://cxf.apache.org/jaxws
+       http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <!--  发布服务需要：引入CXF一些配置   -->
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+
+
+    <!-- 服务注入到Spring中 -->
+    <bean id="sampleService" class="com.cxf.service.SampleServiceImpl"/>
+
+
+    <!--  注册服务  -->
+    <jaxws:server id="myService" address="/sample">
+        <jaxws:serviceBean>
+            <ref bean="sampleService"/>
+        </jaxws:serviceBean>
+    </jaxws:server>
+
+
+    <!--  WSDL地址
+        http://ip:port/contextPath/url-pattern/address?wsdl
+
+        http://192.168.3.8:8888/cxf/service/sample?wsdl
+            service：        url-pattern
+            sample           注册服务的address
+    -->
+
+</beans>
