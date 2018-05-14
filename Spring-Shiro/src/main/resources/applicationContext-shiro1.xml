@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--   shiro URL拦截     -->
+
+    <!--  1、自定义的Ream  -->
+    <bean id="myReam" class="com.shiro.sample.shiro.MyRealm"/>
+
+    <!--  2、注册安全管理器，并为其注入Ream  -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="myReam"/>
+        <!-- 可选优化   -->
+        <property name="rememberMeManager" ref="cookieRememberMeManager"/>
+        <property name="sessionManager" ref="defaultSessionManager"/>
+        <property name="cacheManager" ref="redisCacheManager"/>
+    </bean>
+
+    <!--  3、过滤器工厂  -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!--  安全管理器  -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 登录页面   -->
+        <property name="loginUrl" value="/login.jsp"/>
+        <!-- 首页页面   -->
+        <property name="successUrl" value="/index.jsp"/>
+        <!-- 未认证跳转页面  -->
+        <property name="unauthorizedUrl" value="/error.jsp"/>
+        <!-- 过滤器链：有先后顺序-->
+        <property name="filterChainDefinitions">
+            <value>
+                /login.jsp = anon
+                /login = anon
+                /roleOrTest = roleOr["admin","teacher","student"]
+                /* = authc
+            </value>
+        </property>
+        <!--    注入自定义的拦截器规则   -->
+        <property name="filters">
+            <map>
+                <entry key="roleOr" value-ref="myShiroFilter"/>
+            </map>
+        </property>
+    </bean>
+
+    <!--  自定义的过滤器  -->
+    <bean id="myShiroFilter" class="com.shiro.sample.shiro.MyShiroFilter"/>
+
+
+</beans>
