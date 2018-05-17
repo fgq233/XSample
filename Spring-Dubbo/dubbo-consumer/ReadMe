@@ -1,3 +1,0 @@
-
-
-将接口单独抽取出来，因为provider和consumer都要用到
