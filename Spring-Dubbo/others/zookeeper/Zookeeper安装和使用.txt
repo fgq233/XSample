@@ -1,0 +1,20 @@
+一、windows环境
+1、下载zookeeper解压
+2、新建data目录
+3、去conf目录下：(单机模式)
+	将 zoo_sample.cfg 在此目录下复制一份，并改名为 zoo.cfg	
+	将 zoo.cfg 中 data、log目录改为自己的
+		dataDir=D:\\Develop\\Zookeeper\\data
+4、启动：cmd窗口进入zookeeper的bin目录：运行命令 zkserver.cmd
+5、启动客户端查看命令：zkCli.cmd 127.0.0.1:2181
+			
+二、Linux环境下
+1、同
+2、同
+3、同
+4、启动命令：zkserver.sh start
+5、关闭命令：zkServer.sh stop
+   查看状态：zkServer.sh status
+   
+   
+集群伪分布模式、集群模式配置类似单机模式

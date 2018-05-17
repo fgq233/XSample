@@ -1,0 +1,12 @@
+
+1、将war包放在Tomcat的webapp下，并修改tomcat端口号
+
+2、先启动zookeeper
+
+3、启动tomcat
+
+4、访问dubbo admin
+    地址：http://localhost:8888/dubbo-admin-2.5.4/
+    用户：root
+    密码：root
+    这些参数可以配置：WEB-INF下dubbo.properties

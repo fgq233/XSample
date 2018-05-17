@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+    <!--   ★：使用dubbo发布服务     -->
+
+
+    <!--   提供方应用信息，用于计算依赖关系  -->
+    <dubbo:application name="sample-provider"/>
+
+
+    <!--    使用 zookeeper 注册中心，配置注册中心地址(注意要先开启 zookeeper)  -->
+    <dubbo:registry address="zookeeper://localhost:2181"/>
+
+
+    <!--    用dubbo协议在20880端口暴露服务     -->
+    <dubbo:protocol name="dubbo" port="20880" />
+
+
+    <!--    使用 dubbo 协议实现定义好的 api.PermissionService 接口  -->
+    <dubbo:service interface="com.dubbo.api.SampleService" ref="sampleService"/>
+
+
+    <!--    具体实现类   -->
+    <bean id="sampleService" class="com.dubbo.provider.SampleServiceImpl"/>
+
+
+
+
+</beans>
