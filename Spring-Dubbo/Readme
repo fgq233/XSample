@@ -1,0 +1,4 @@
+
+需要注意的是：虽然一个服务可以同时是provider、consumer，但是不推荐服务之间相互调用，因为如果在provider没有启动前启动consumer，肯定会报错
+
+虽然可以在consumer的dubbo:reference中配置check="false"，来解决没有provider报错的问题，但是还是不推荐相互调用
