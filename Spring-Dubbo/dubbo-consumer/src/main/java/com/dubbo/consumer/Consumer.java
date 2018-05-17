@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Consumer {
     public static void main(String[] args) throws IOException {
-        ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("spring-dubbo-consumer.xml");
+        ApplicationContext  ac = new ClassPathXmlApplicationContext("classpath:spring-dubbo-consumer.xml");
         ac.start();
 
         System.out.println("调用者启动成功");
