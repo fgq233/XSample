@@ -1,0 +1,30 @@
+一、ActiveMQ介绍
+    ActiveMQ 是Apache出品，最流行的，能力强劲的开源消息总线。
+    ActiveMQ 是一个完全支持JMS1.1和J2EE 1.4规范的 JMS Provider实现，尽管JMS规范出台已经是很久的事情了，但是JMS在当今的J2EE应用中间仍然扮演着特殊的地位。
+    ActiveMQ是Java开发的
+
+二、ActiveMQ消息形式
+    1、点对点PTP：Point To Point
+          特点：一个生产者发送的消息只有一个消费者能够接受到
+                持久化，没有被消费就一直存在那里
+
+    2、 发布-订阅模式：Pub/Sub：Publish/Subscribe
+          特点：一个生产者产生消息并发送后，可以有多个消费者接受
+                发完之后不管有没有接收到,但是我们可以主动持久化订阅
+
+三、JMS定义的5种类型消息
+    1、StreamMessage
+    2、MapMessage
+    3、TextMessage       一个字符串对象
+    4、ObjectMessage     一个序列化的Java对象
+    5、BytesMessage
+
+四、安装与启动
+   1、解压
+   2、Windows：运行activemq.bat
+      Linux：运行activemq start命令
+
+五、访问ActiveMQ后台
+    localhost:8161
+    用户名：admin
+    密码：admin
