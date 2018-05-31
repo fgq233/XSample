@@ -1,0 +1,19 @@
+Java连接Oracle数据库
+
+1、由于Oracle授权问题，Maven3中央仓库不提供oracle JDBC driver，所以我们需要手动添加ojdbc.jar到maven仓库
+    本地ojdbc.jar在oracle安装目录中：E:\OracleDB\Oracle10g\product\10.2.0\db_1\jdbc\lib\ojdbc14.jar
+    运行maven命令： 将该 jar 添加到本地maven仓库
+        mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0 -Dpackaging=jar -Dfile=
+        E:\OracleDB\Oracle10g\product\10.2.0\db_1\jdbc\lib\ojdbc14.jar
+
+    注意：DartifactId、Dversion要对应
+	    oracle10g 对应 ojdbc14
+	    oracle11g 对应 ojdbc6
+
+2、项目中添加maven依赖
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc14</artifactId>
+            <version>10.2.0</version>
+        </dependency>
+
